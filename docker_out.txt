@@ -1,0 +1,85 @@
+coil@ubuntu:~/Desktop/DevOps_Microservices/project-ml-microservice-kubernetes$ ./run_docker.sh
+Sending build context to Docker daemon  750.6kB
+Step 1/6 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Running in a9d5bd2dfb81
+Removing intermediate container a9d5bd2dfb81
+ ---> ac8f9ff41c6a
+Step 3/6 : COPY . app.py /app/
+ ---> 36876298dd37
+Step 4/6 : RUN pip install --upgrade pip &&    pip install -r requirements.txt
+ ---> Running in 3cfaf23c296c
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/cb/28/91f26bd088ce8e22169032100d4260614fc3da435025ff389ef1d396a433/pip-20.2.4-py2.py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-20.2.4
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux1_x86_64.whl (27 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Installing collected packages: Click, itsdangerous, Werkzeug, MarkupSafe, Jinja2, Flask, numpy, pytz, six, python-dateutil, pandas, scipy, scikit-learn
+Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 itsdangerous-1.1.0 numpy-1.17.2 pandas-0.24.2 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0
+Removing intermediate container 3cfaf23c296c
+ ---> 5fa083e531f4
+Step 5/6 : EXPOSE 80
+ ---> Running in 91fb2dc02ce5
+Removing intermediate container 91fb2dc02ce5
+ ---> 06b2291284f0
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Running in 6b4125e40299
+Removing intermediate container 6b4125e40299
+ ---> 463aff54e03d
+Successfully built 463aff54e03d
+Successfully tagged predictive_model:latest
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+predictive_model              latest              463aff54e03d        1 second ago        1.24GB
+gcr.io/k8s-minikube/kicbase   v0.0.13             90f1294ff9ac        4 weeks ago         800MB
+hello-world                   latest              bf756fb1ae65        10 months ago       13.3kB
+python                        3.7.3-stretch       34a518642c76        16 months ago       929MB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 307-952-937
+[2020-10-31 12:31:55,867] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2020-10-31 12:31:55,895] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2020-10-31 12:31:55,914] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2020-10-31 12:31:55,919] INFO in app: output prediction: [20.35373177134412]
+172.17.0.1 - - [31/Oct/2020 12:31:55] "POST /predict HTTP/1.1" 200 -
+
+

@@ -1,0 +1,26 @@
+coil@ubuntu:~/Desktop/DevOps_Microservices/project-ml-microservice-kubernetes$ ./run_kubernetes.sh 
+Flag --generator has been deprecated, has no effect and will be removed in the future.
+pod/predictive-model created
+NAME               READY   STATUS              RESTARTS   AGE
+predictive-model   0/1     ContainerCreating   0          0s
+sleeping
+error: unable to forward port because pod is not running. Current status=Pending
+coil@ubuntu:~/Desktop/DevOps_Microservices/project-ml-microservice-kubernetes$ ./run_kubernetes.sh 
+Flag --generator has been deprecated, has no effect and will be removed in the future.
+Error from server (AlreadyExists): pods "predictive-model" already exists
+NAME               READY   STATUS              RESTARTS   AGE
+predictive-model   0/1     ContainerCreating   0          93s
+sleeping
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+
+coil@ubuntu:~/Desktop/DevOps_Microservices/project-ml-microservice-kubernetes$ ./make_prediction.sh 
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+coil@ubuntu:~/Desktop/DevOps_Microservices/project-ml-microservice-kubernetes$ 
+
