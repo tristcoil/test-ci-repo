@@ -9,7 +9,7 @@ setup:
 	# Create python virtualenv & source it
 	# source it manually and then run 'make all'
 	# source ~/.devops/bin/activate
-	python -m venv ~/.devops
+	python3 -m venv ~/.devops
 
 install:
 	# This should be run from inside a virtualenv
