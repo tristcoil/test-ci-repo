@@ -1,4 +1,6 @@
 <include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/tristcoil/test-ci-repo.svg?style=svg)](https://circleci.com/gh/tristcoil/test-ci-repo)
+
 
 ## Project Overview
 
