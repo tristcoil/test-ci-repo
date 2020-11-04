@@ -18,7 +18,7 @@ def scale(payload):
     scaled_adhoc_predict = scaler.transform(payload.astype(float))
     return scaled_adhoc_predict
 
-@app.route("/")
+fsa3232@app.route("/")
 def home():
     html = "<h3>Sklearn Prediction Home</h3>"
     return html.format(format)
